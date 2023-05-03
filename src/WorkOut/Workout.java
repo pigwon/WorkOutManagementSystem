@@ -8,9 +8,15 @@ public class Workout {
 	protected int Set;
 	protected int Weight;
 	protected int Rest;
+	String chesttarget;
 
 	public Workout() {}
 
+	public Workout(WorkoutKind kind) {
+		this.kind=kind;
+	}
+
+	
 	public Workout(String 종목이름, int Set, int Weight, int Rest) {
 
 		this.종목이름 = 종목이름;
@@ -18,7 +24,13 @@ public class Workout {
 		this.Weight = Weight;
 		this.Rest = Rest;
 	}
-
+	public Workout(WorkoutKind kind, String 종목이름, int Set, int Weight, int Rest) {
+		this.kind = kind;
+		this.종목이름 = 종목이름;
+		this.Set = Set;
+		this.Weight = Weight;
+		this.Rest = Rest;
+	}
 	public WorkoutKind getKind() {
 		return kind;
 	}
@@ -58,9 +70,34 @@ public class Workout {
 	public void setRest(int rest) {
 		Rest = rest;
 	}
-
+	
 	public void printInfo() {
-		System.out.println("종목이름:"+ 종목이름 + "Set:" + Set + "Weight:" + Weight + "Rest:"+ Rest);
+		String skind = "none";
+		switch(this.kind) {
+		
+		case Chest:
+			skind = "가슴";
+			break;
+		
+		case Arm:
+			skind = "팔";
+			break;
+			
+		case Back:
+			skind = "등";
+			break;
+			
+		case Shoulder:
+			skind = "어깨";
+			break;
+			
+		case Legs:
+			skind = "다리";
+			break;
+			
+		default:
+		}
+		System.out.println("kind:"+ skind + " 종목이름:"+ 종목이름 + " Set:" + Set + " Weight:" + Weight + " Rest:"+ Rest + " 타겟부위(위/중앙/아래):"+ chesttarget);
 	}
 
 	public void getUserInput(Scanner input) {
@@ -68,15 +105,23 @@ public class Workout {
 		System.out.print("종목이름:");
 		String 종목이름 = input.next();
 		this.set종목이름(종목이름);
+
 		System.out.print("세트수:");
 		int Set = input.nextInt();
 		this.setSet(Set);
+
 		System.out.print("무게(kg):");
 		int Weight = input.nextInt();
 		this.setWeight(Weight);
+
 		System.out.print("쉬는시간(분):");
 		int Rest = input.nextInt();
 		this.setRest(Rest);
+
+		System.out.print("타켓부위(위/중앙/아래):");
+		chesttarget = input.next();
+
+
 	}
 
 }
