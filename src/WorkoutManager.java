@@ -4,13 +4,15 @@ import java.util.Scanner;
 
 import WorkOut.Arm;
 import WorkOut.Back;
+import WorkOut.Chest;
 import WorkOut.Legs;
 import WorkOut.Shoulder;
 import WorkOut.Workout;
+import WorkOut.WorkoutInput;
 import WorkOut.WorkoutKind;
 
 public class WorkoutManager {
-	ArrayList<Workout> workouts = new ArrayList<Workout>();
+	ArrayList<WorkoutInput> workouts = new ArrayList<WorkoutInput>();
 	Scanner input;
 
 	WorkoutManager(Scanner input) {
@@ -19,7 +21,7 @@ public class WorkoutManager {
 
 	public void add운동종목() {
 		int kind =0;
-		Workout workout;
+		WorkoutInput workoutInput;
 		while(kind != 1&& kind  !=2 && kind  !=3 && kind  !=4 && kind  !=5) {
 
 			System.out.println("1 for Chest");
@@ -30,32 +32,32 @@ public class WorkoutManager {
 			System.out.println("Select number for Workout kind between 1 ~ 5:");
 			kind = input.nextInt();
 			if(kind ==1) {
-				workout = new Workout(WorkoutKind.Chest);
-				workouts.add(workout);
-				workout.getUserInput(input);
+				workoutInput = new Chest(WorkoutKind.Chest);
+				workouts.add(workoutInput);
+				workoutInput.getUserInput(input);
 				break;
 			}else if(kind==2) {
-				workout = new Shoulder(WorkoutKind.Shoulder);
-				workouts.add(workout);
-				workout.getUserInput(input);
+				workoutInput = new Shoulder(WorkoutKind.Shoulder);
+				workouts.add(workoutInput);
+				workoutInput.getUserInput(input);
 				break;
 			}
 			else if(kind==3) {
-				workout = new Back(WorkoutKind.Back);
-				workouts.add(workout);
-				workout.getUserInput(input);
+				workoutInput = new Back(WorkoutKind.Back);
+				workouts.add(workoutInput);
+				workoutInput.getUserInput(input);
 				break;
 			}
 			else if(kind==4) {
-				workout = new Arm(WorkoutKind.Arm);
-				workouts.add(workout);
-				workout.getUserInput(input);
+				workoutInput = new Arm(WorkoutKind.Arm);
+				workouts.add(workoutInput);
+				workoutInput.getUserInput(input);
 				break;
 			}
 			else if(kind==5) {
-				workout = new Legs(WorkoutKind.Legs);
-				workouts.add(workout);
-				workout.getUserInput(input);
+				workoutInput = new Legs(WorkoutKind.Legs);
+				workouts.add(workoutInput);
+				workoutInput.getUserInput(input);
 				break;
 
 			}else {
@@ -90,9 +92,9 @@ public class WorkoutManager {
 		System.out.print("종목이름:");
 		String 종목이름 = input.next();
 		for (int i = 0; i < workouts.size(); i++) {
-			Workout workout = workouts.get(i);
+			WorkoutInput workoutInput = workouts.get(i);
 
-			if (workout.get종목이름().equals(종목이름)) {
+			if (workoutInput.get종목이름().equals(종목이름)) {
 				int num = -1;
 				while (num != 5) {
 					System.out.println("*** Workout Info Edit Menu ***");
@@ -107,23 +109,23 @@ public class WorkoutManager {
 						System.out.print("종목이름:");
 
 						String 운동종목 = input.next();
-						workout.set종목이름(종목이름);
+						workoutInput.set종목이름(종목이름);
 
 					} else if (num == 2) {
 						System.out.print("세트수:");
 						int Set = input.nextInt();
-						workout.setSet(Set);
+						workoutInput.setSet(Set);
 
 					} else if (num == 3) {
 						System.out.print("kg:");
 						int Weight = input.nextInt();
-						workout.setWeight(Weight);
+						workoutInput.setWeight(Weight);
 
 
 					} else if (num == 4) {
 						System.out.print("Rest:");
 						int Rest = input.nextInt();
-						workout.setRest(Rest);
+						workoutInput.setRest(Rest);
 
 					} else {
 						continue;

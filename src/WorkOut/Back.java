@@ -2,7 +2,7 @@ package WorkOut;
 
 import java.util.Scanner;
 
-public class Back extends Workout {
+public class Back extends Workout implements WorkoutInput {
 
     private String backtarget;
     

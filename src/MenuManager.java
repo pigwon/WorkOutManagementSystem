@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class MenuManager {
 	public static void main(String[] args) {
-	
+
 		Scanner input = new Scanner(System.in);
 		WorkoutManager workoutmanager = new WorkoutManager(input);
-		
+
 		int num = -1;
 		while(num !=5){
 			//()안의 조건을 어길 때까지 반복하는 while반복문
