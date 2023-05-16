@@ -1,5 +1,5 @@
-
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import WorkOut.Arm;
@@ -23,7 +23,7 @@ public class WorkoutManager {
 		int kind =0;
 		WorkoutInput workoutInput;
 		while(kind != 1&& kind  !=2 && kind  !=3 && kind  !=4 && kind  !=5) {
-
+			try {
 			System.out.println("1 for Chest");
 			System.out.println("2 for Shoulder");
 			System.out.println("3 for Back");
@@ -63,7 +63,14 @@ public class WorkoutManager {
 			}else {
 				System.out.print("Select Workout Kind:");
 
-
+			}
+			}
+			catch(InputMismatchException e) {
+				System.out.println("Please put an integer between 1 and 5!");
+				if(input.hasNext()) {
+					input.next();
+				}
+				kind = -1;
 			}
 		}
 	}
@@ -72,6 +79,11 @@ public class WorkoutManager {
 	public void delete운동종목() {
 		System.out.print("종목이름:");
 		String 종목이름 = input.next();
+		int index = findIndex(종목이름);
+		removefromWorkouts(index,종목이름);
+	}
+
+	public int findIndex(String 종목이름) {
 		int index = -1;
 		for (int i = 0; i < workouts.size(); i++) {
 			if (workouts.get(i).get종목이름(). equals(종목이름)) {
@@ -79,55 +91,47 @@ public class WorkoutManager {
 				break;
 			}
 		}
+		return index;
+	}
+
+
+	public int removefromWorkouts(int index, String 종목이름) {
 		if (index >= 0) {
 			workouts.remove(index);
 			System.out.println("the workout " + 종목이름 + " is deleted");
+			return 1;
 		} else {
 			System.out.println("the workout has not been registered");
-			return;
+			return -1;
 		}
+
 	}
 
 	public void edit운동종목() {
 		System.out.print("종목이름:");
 		String 종목이름 = input.next();
 		for (int i = 0; i < workouts.size(); i++) {
-			WorkoutInput workoutInput = workouts.get(i);
+			WorkoutInput workout = workouts.get(i);
 
-			if (workoutInput.get종목이름().equals(종목이름)) {
+			if (workout.get종목이름().equals(종목이름)) {
 				int num = -1;
 				while (num != 5) {
-					System.out.println("*** Workout Info Edit Menu ***");
-					System.out.println("1. Edit 운동종목");
-					System.out.println("2. Edit 세트수");
-					System.out.println("3. Edit kg");
-					System.out.println("4. Edit Rest");
-					System.out.println("5. Exit");
-					System.out.print("Select one number between: ");
+					showEditMenu();
 					num = input.nextInt();
-					if (num == 1) {
-						System.out.print("종목이름:");
-
-						String 운동종목 = input.next();
-						workoutInput.set종목이름(종목이름);
-
-					} else if (num == 2) {
-						System.out.print("세트수:");
-						int Set = input.nextInt();
-						workoutInput.setSet(Set);
-
-					} else if (num == 3) {
-						System.out.print("kg:");
-						int Weight = input.nextInt();
-						workoutInput.setWeight(Weight);
-
-
-					} else if (num == 4) {
-						System.out.print("Rest:");
-						int Rest = input.nextInt();
-						workoutInput.setRest(Rest);
-
-					} else {
+					switch(num) {
+					case 1:
+						workout.setWorkout운동종목(input);
+						break;
+					case 2:
+						workout.setWorkoutSet(input);
+						break;
+					case 3:
+						workout.setWorkoutWeight(input);
+						break;
+					case 4:
+						workout.setWorkoutRest(input);
+						break;
+					default:
 						continue;
 					}
 				}
@@ -140,5 +144,16 @@ public class WorkoutManager {
 		for (int i = 0; i < workouts.size(); i++) {
 			workouts.get(i).printInfo();
 		}
+	}
+
+	public void showEditMenu() {
+		System.out.println("*** Workout Info Edit Menu ***");
+		System.out.println("1. Edit 운동종목");
+		System.out.println("2. Edit 세트수");
+		System.out.println("3. Edit kg");
+		System.out.println("4. Edit Rest");
+		System.out.println("5. Exit");
+		System.out.print("Select one number between: ");
+
 	}
 }

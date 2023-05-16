@@ -17,4 +17,12 @@ public interface WorkoutInput {
 	public void setSet(int set);
 
 	public void printInfo();
+	
+	public void setWorkout운동종목(Scanner input);
+	
+	public void setWorkoutSet(Scanner input);
+	
+	public void setWorkoutWeight(Scanner input);
+	
+	public void setWorkoutRest(Scanner input);
 }

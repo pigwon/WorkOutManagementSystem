@@ -2,7 +2,7 @@ package WorkOut;
 
 import java.util.Scanner;
 
-public abstract class Workout {
+public abstract class Workout implements WorkoutInput{
 	protected WorkoutKind kind =  WorkoutKind.Chest;
 	protected String 종목이름;
 	protected int Set;
@@ -72,6 +72,56 @@ public abstract class Workout {
 	}
 
 	public abstract void printInfo();
+	
+	public void setWorkout운동종목(Scanner input) {
+		System.out.print("종목이름:");
+		String 운동종목 = input.next();
+		this.set종목이름(운동종목);
+	}
+	public void setWorkoutSet(Scanner input) {
+		System.out.print("세트수:");
+		int Set = input.nextInt();
+		this.setSet(Set);
+	}
+	public void setWorkoutWeight(Scanner input) {
+		System.out.print("kg:");
+		int Weight = input.nextInt();
+		this.setWeight(Weight);
+	}
+	public void setWorkoutRest(Scanner input) {
+		System.out.print("Rest(분):");
+		int Rest = input.nextInt();
+		this.setRest(Rest);
+
+	}
+	public String getKindString() {
+		String skind = "none";
+		switch(this.kind) {
+
+		case Chest:
+			skind = "가슴";
+			break;
+
+		case Arm:
+			skind = "팔";
+			break;
+
+		case Back:
+			skind = "등";
+			break;
+
+		case Shoulder:
+			skind = "어깨";
+			break;
+
+		case Legs:
+			skind = "다리";
+			break;
+
+		default:
+		}
+		return skind;
+	}
 
 	public abstract void getUserInput(Scanner input);
 }
