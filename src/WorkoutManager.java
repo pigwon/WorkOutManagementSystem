@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -7,13 +8,17 @@ import WorkOut.Back;
 import WorkOut.Chest;
 import WorkOut.Legs;
 import WorkOut.Shoulder;
-import WorkOut.Workout;
 import WorkOut.WorkoutInput;
 import WorkOut.WorkoutKind;
 
-public class WorkoutManager {
+public class WorkoutManager implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2705664089872464794L;
+	
 	ArrayList<WorkoutInput> workouts = new ArrayList<WorkoutInput>();
-	Scanner input;
+	transient Scanner input;
 
 	WorkoutManager(Scanner input) {
 		this.input = input;

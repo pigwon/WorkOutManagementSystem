@@ -1,15 +1,20 @@
 package WorkOut;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class Workout implements WorkoutInput{
+public abstract class Workout implements WorkoutInput,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4046120295180424413L;
+	
 	protected WorkoutKind kind =  WorkoutKind.Chest;
 	protected String 종목이름;
 	protected int Set;
 	protected int Weight;
 	protected int Rest;
-	String chesttarget;
-
+	
 	public Workout() {}
 
 	public Workout(WorkoutKind kind) {
