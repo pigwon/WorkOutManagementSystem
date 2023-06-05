@@ -1,4 +1,4 @@
-5월 26, 2023 10:06:19 오후 log.EventLogger log
+5월 26, 2023 10:25:58 오후 log.EventLogger log
 INFO: 운동종목 추가
-5월 26, 2023 10:06:22 오후 log.EventLogger log
+5월 26, 2023 10:26:00 오후 log.EventLogger log
 INFO: 운동종목 보기
