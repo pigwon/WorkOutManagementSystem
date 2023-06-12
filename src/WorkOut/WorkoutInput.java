@@ -10,10 +10,16 @@ public interface WorkoutInput {
 
 	public void set종목이름(String 종목이름);
 
+	public int getRest();
+	
 	public void setRest(int rest);
 
+	public int getWeight();
+	
 	public void setWeight(int weight);
 
+	public int getSet();
+	
 	public void setSet(int set);
 
 	public void printInfo();

@@ -1,3 +1,5 @@
+package manager;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -8,6 +10,7 @@ import WorkOut.Back;
 import WorkOut.Chest;
 import WorkOut.Legs;
 import WorkOut.Shoulder;
+import WorkOut.Workout;
 import WorkOut.WorkoutInput;
 import WorkOut.WorkoutKind;
 
@@ -151,6 +154,14 @@ public class WorkoutManager implements Serializable {
 		}
 	}
 
+	public int size() {
+		return workouts.size();
+	}
+	
+	public WorkoutInput get(int index) {
+		return (Workout) workouts.get(index);
+	}
+	
 	public void showEditMenu() {
 		System.out.println("*** Workout Info Edit Menu ***");
 		System.out.println("1. Edit 운동종목");
