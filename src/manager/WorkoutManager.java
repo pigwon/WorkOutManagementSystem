@@ -26,6 +26,17 @@ public class WorkoutManager implements Serializable {
 	WorkoutManager(Scanner input) {
 		this.input = input;
 	}
+	
+	public void add운동종목(String 종목이름, String set, String weight, String rest) {
+		WorkoutInput workoutInput = new Chest(WorkoutKind.Chest);
+		workouts.add(workoutInput);
+		workoutInput.getUserInput(input);
+	
+	}
+	
+	public void add운동종목(WorkoutInput workoutInput) {
+		workouts.add(workoutInput);
+	}
 
 	public void add운동종목() {
 		int kind =0;

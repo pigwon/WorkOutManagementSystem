@@ -7,12 +7,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import event.WorkoutAdderCancelListener;
+import event.WorkoutAdderListenter;
+import manager.WorkoutManager;
+
 public class WorkoutAdder extends JPanel{
 	
 	WindowFrame frame;
+	WorkoutManager workoutmanager;
 	
-	public WorkoutAdder(WindowFrame frame) {
+	public WorkoutAdder(WindowFrame frame, WorkoutManager workoutmanager) {
 		this.frame=frame;
+		this.workoutmanager=workoutmanager;
 		
 		
 		JPanel panel = new JPanel();
@@ -39,11 +45,20 @@ public class WorkoutAdder extends JPanel{
 		JLabel labelrest = new JLabel("Rest",JLabel.TRAILING);
 		JTextField fieldrest = new JTextField(10);
 		labelrest.setLabelFor(fieldrest);
+		
+		JButton saveButton = new JButton("save");
+		saveButton.addActionListener(new WorkoutAdderListenter(field종목이름, fieldset, fieldweight, fieldrest,workoutmanager));
+		
+		
+		JButton cancelButton = new JButton("cancel");
+		cancelButton.addActionListener(new WorkoutAdderCancelListener(frame));
+		
+		
 		panel.add(labelrest);
 		panel.add(fieldrest);
 
-		panel.add(new JButton("save"));
-		panel.add(new JButton("cencel"));
+		panel.add(saveButton);
+		panel.add(cancelButton);
 
 
 		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);
